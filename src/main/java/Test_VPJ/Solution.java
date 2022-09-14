@@ -6,30 +6,27 @@ public class Solution {
 
     public static void main(String[] args) {
 
-       System.out.println(isValid(input()));
+        System.out.println(isValid(input()));
     }
 
-      public static boolean isValid(String s) {
+    public static boolean isValid(String s) {
 
-        boolean spellCheck = false;
-        char[] charArray = s.toCharArray();
-        int k = 1;
+       char[] charArray = s.toCharArray();
 
-        if (charArray.length == 1){ spellCheck = false;}
-        else
-for (int i = 0; i < charArray.length; i = i + 2) {
-            if ((charArray[i] == '(' && charArray[k] == ')')
-                    || (charArray[i] == '{' && charArray[k] == '}')
-                    || (charArray[i] == '[' && charArray[k] == ']')) {
-                spellCheck = true;
-                if ((k+2)< charArray.length){k = k+2;}
+        if (charArray.length %2 != 0) {
+            return false;
+        } else {
+            for (int i = 0; i < charArray.length; i++) {
+                if ((charArray[i] == '(' && charArray[i+1] == ')')
+                        || (charArray[i] == '{' && charArray[i+1] == '}')
+                        || (charArray[i] == '[' && charArray[i+1] == ']')) {
+                                     i++;
+                } else {
+                    return false;
+                }
 
-            } else {
-                spellCheck = false;
-            }
-
-                   }
-        return spellCheck;
+            }}
+        return true;
     }
 
     static String input() {
